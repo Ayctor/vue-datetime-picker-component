@@ -10,7 +10,7 @@
 	<div class="calendar-wrap">
 		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" readonly>
 		<input type="hidden" :name="name"v-model="date_formatted" readonly>
-		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="getDate" @cancel="hideCalendar" ></calendar>
+		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" ></calendar>
 	</div>
 </template>
 
@@ -33,15 +33,13 @@
 		props: 
 		{
 			value: { type: String, required: true },
-			format: { type: String, default: defaultFormat },
 			name: { type: String },
 			statut: { 
 				byDay: Boolean,
 				byHalfDay: Boolean,
 				byHour: Boolean,
 				byMinute: Boolean,
-			 },
-			options: { type: String },
+			},
 		},
 		data () 
 		{
@@ -52,7 +50,7 @@
 		},
 		methods:
 		{
-			getDate: function (selectedDate)
+			setDate: function (selectedDate)
 			{
 				this.date = selectedDate;
 				this.hideCalendar();

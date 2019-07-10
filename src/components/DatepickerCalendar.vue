@@ -233,9 +233,9 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
-			<timepicker-by-halfday :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-show="byHalfDay"></timepicker-by-halfday>
-			<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-show="byHour"></timepicker-by-hour>
-			<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-show="byMinute"></timepicker-by-minute>
+			<timepicker-by-halfday :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHalfDay"></timepicker-by-halfday>
+			<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHour"></timepicker-by-hour>
+			<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byMinute"></timepicker-by-minute>
 			<div class="calendar-actions">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>
@@ -289,8 +289,6 @@
 	    		minuteFocused: false,
 	    		hourProp: '',
 	    		minuteProp: '',
-	    		hourInt: 0,
-	    		minuteInt: 0,
 	    		invalidDate: false,
 	    		regex: /^[0-9]$/,
 			}
@@ -299,11 +297,14 @@
 		{
 			isSelected: function (day)
 			{
-				return this.dateProp.unix() === day.unix();
+				return this.dateProp.dayOfYear() === day.dayOfYear();
 			},
 			selectDate: function (day)
 			{
-				return this.dateProp = day.clone();
+				let dayClone = day.clone()
+				dayClone.hours(parseInt(this.hourProp));
+				dayClone.minutes(parseInt(this.minuteProp));
+				return this.dateProp = dayClone;
 			},
 			nextMonth ()
 			{
@@ -329,33 +330,22 @@
 			},
 			submit ()
 			{
-				if((this.hourInt<24 && this.hourInt>=0 ) && (this.minuteInt<59 && this.minuteInt>=0) && this.statut === 'byMinute')
-				{	
-					this.hourInt = parseInt(this.hourProp);
-					this.minuteInt = parseInt(this.minuteProp);
-					this.dateProp = this.date.clone();
-					this.$emit('change', this.dateProp);
-				} 
-				else if((this.hourInt<24 && this.hourInt>0 ) && this.statut === 'byHour')
-				{
-					this.hourInt = parseInt(this.hourProp);
-					this.minuteInt = parseInt(this.minuteProp);
-					this.dateProp = this.date.clone();
-					this.$emit('change', this.dateProp);
-				}else if(this.statut === 'byDay')
-				{	
-					this.hourInt = parseInt(this.hourProp);
-					this.minuteInt = parseInt(this.minuteProp);
-					this.dateProp = this.date.clone();
-					this.$emit('change', this.dateProp);
-				}else if(this.statut === 'byHalfDay')
-				{
-					this.dateProp = this.date.clone();
-					this.$emit('change', this.dateProp);
-				}else
-				{
-					alert('Format invalide');
-				}
+				// check hours
+                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
+                {
+                    alert('Format d\'heure invalide');
+                    return false;
+                }
+
+                // check minutes
+                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
+                {
+                    alert('Format de minute invalide');
+                    return false;
+                }
+
+				this.dateProp = this.dateProp.clone();
+				this.$emit('change', this.dateProp);
 			},
 			cancel ()
 			{

@@ -139,7 +139,6 @@
 	{
 		props: 
 		{
-			value: { type: String, required: true },
 			statut: { type: String },
 			hour: { type: String },
 			minute: { type: String },
@@ -149,7 +148,6 @@
 			return{		
 	    		activeMorning: true,
 	    		activeAfternoon: false,
-	    		valueProp: this.value,
 	    		hourProp: this.hour,
 	    		minuteProp: this.minute,
 	    		hourInt: parseInt(this.hour),
