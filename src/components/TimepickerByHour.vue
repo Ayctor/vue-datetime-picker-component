@@ -173,7 +173,6 @@
 			hourInt ()
 			{
 				this.$emit('change', {'hourProp':this.hourProp});
-
 			},
 		},
 	};

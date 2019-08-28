@@ -34,18 +34,13 @@
 		{
 			value: { type: String, required: true },
 			name: { type: String },
-			statut: { 
-				byDay: Boolean,
-				byHalfDay: Boolean,
-				byHour: Boolean,
-				byMinute: Boolean,
-			},
+			statut: { type: String },
 		},
 		data () 
 		{
 			return {
 				visibleCalendar: false,
-				date: moment(this.value, defaultFormat),
+				date: moment(),
 			}
 		},
 		methods:
@@ -73,7 +68,7 @@
 				if(this.statut==='byDay')
 				{
 					return this.date.format('DD/MM/YYYY');
-				}else
+				} else
 				{
 					return this.date.format('DD/MM/YYYY HH:mm');
 				}
@@ -82,6 +77,11 @@
 			{
 				return this.date.format(defaultFormat)
 			},
+			watcher () 
+			{
+				this.reload(this.statut);
+				console.log(this.statut)
+ 			}
 		},
 	};
 </script>

@@ -233,6 +233,7 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
+			<!-- <timepicker-by-day :statut="statut" :value="value" :date.sync="date" name="hour-start" v-if="byDay"></timepicker-by-day> -->
 			<timepicker-by-halfday :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHalfDay"></timepicker-by-halfday>
 			<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHour"></timepicker-by-hour>
 			<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byMinute"></timepicker-by-minute>
@@ -359,7 +360,16 @@
 				this.dateProp.minute(this.minuteProp);
 				this.dateProp.hour(this.hourProp);
 			},
-
+			isDay()
+			{
+				if(this.statut==='byDay')
+				{
+					this.byDay = true
+				} else
+				{
+					this.byMinute = false
+				}
+			},
 			isHalfDay ()
 			{
 				if(this.statut === 'byHalfDay') 
@@ -413,9 +423,11 @@
 		},
 		mounted ()
 		{
+			this.isDay();
 			this.isHalfDay();
 			this.isHour();
 			this.isMinute();
+			console.log(this.statut)
 		}
 	};
 </script>
