@@ -4,7 +4,7 @@ import Datepicker from './components/Datepicker'
 Vue.use(Datepicker);
 
 new Vue({
-	el: '.wrap',
+	el: '#app',
 	components: {
 		datepicker: Datepicker,
 	}
