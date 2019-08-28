@@ -332,7 +332,7 @@
 			submit ()
 			{
 				// check hours
-				if(!(this.statut === 'byDay'))
+				if(!(this.statut === 'byDay')&&!(this.statut === 'byHalfDay'))
 				{
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
 	                {
@@ -340,7 +340,7 @@
 	                    return false;
 	                }
 
-					if(!(this.statut === 'byHalfHour')&&!(this.statut === 'byHour'))
+					if(!(this.statut === 'byHour'))
 					{
 		                // check minutes
 		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
