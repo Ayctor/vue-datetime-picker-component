@@ -340,12 +340,15 @@
 	                    return false;
 	                }
 
-	                // check minutes
-	                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
-	                {
-	                    alert('Format de minute invalide');
-	                    return false;
-	                }
+					if(!(this.statut === 'byHalfHour')&&!(this.statut === 'byHour'))
+					{
+		                // check minutes
+		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
+		                {
+		                    alert('Format de minute invalide');
+		                    return false;
+		                }
+					}
 				}
 				this.dateProp = this.dateProp.clone();
 				this.$emit('change', this.dateProp);
