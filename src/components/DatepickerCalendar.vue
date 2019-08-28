@@ -332,19 +332,21 @@
 			submit ()
 			{
 				// check hours
-                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
-                {
-                    alert('Format d\'heure invalide');
-                    return false;
-                }
+				if(!(this.statut === 'byDay'))
+				{
+	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
+	                {
+	                    alert('Format d\'heure invalide');
+	                    return false;
+	                }
 
-                // check minutes
-                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
-                {
-                    alert('Format de minute invalide');
-                    return false;
-                }
-
+	                // check minutes
+	                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
+	                {
+	                    alert('Format de minute invalide');
+	                    return false;
+	                }
+				}
 				this.dateProp = this.dateProp.clone();
 				this.$emit('change', this.dateProp);
 			},
@@ -359,16 +361,6 @@
 
 				this.dateProp.minute(this.minuteProp);
 				this.dateProp.hour(this.hourProp);
-			},
-			isDay()
-			{
-				if(this.statut==='byDay')
-				{
-					this.byDay = true
-				} else
-				{
-					this.byMinute = false
-				}
 			},
 			isHalfDay ()
 			{
@@ -423,11 +415,9 @@
 		},
 		mounted ()
 		{
-			this.isDay();
 			this.isHalfDay();
 			this.isHour();
 			this.isMinute();
-			console.log(this.statut)
 		}
 	};
 </script>

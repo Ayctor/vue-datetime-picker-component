@@ -77,11 +77,6 @@
 			{
 				return this.date.format(defaultFormat)
 			},
-			watcher () 
-			{
-				this.reload(this.statut);
-				console.log(this.statut)
- 			}
 		},
 	};
 </script>
