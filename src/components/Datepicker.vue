@@ -71,10 +71,10 @@
 
 <template>	
 	<div class="calendar-wrap">
-		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" readonly>
-		<input type="hidden" :name="name"v-model="date_formatted" readonly>
-		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" ></calendar>
-		<timepicker statut="byMinute" value="2000-01-01T00:00" format="HH:mm" name="timepicker"></timepicker>
+		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
+		<input type="hidden" :name="name"v-model="date_formatted" v-if="genre === 'datetime' || genre === 'date'" readonly>
+		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'"></calendar>
+		<timepicker :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" v-if="genre === 'datetime' || genre === 'time'"></timepicker>
 	</div>
 </template>
 
