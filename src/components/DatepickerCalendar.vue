@@ -234,9 +234,7 @@
 				</div>
 			</div>
 			<!-- <timepicker-by-day :statut="statut" :value="value" :date.sync="date" name="hour-start" v-if="byDay"></timepicker-by-day> -->
-			<timepicker-by-halfday :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHalfDay"></timepicker-by-halfday>
-			<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHour"></timepicker-by-hour>
-			<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byMinute"></timepicker-by-minute>
+			<timepicker :statut="statut" :value="value" :date.sync="date"></timepicker>
 			<div class="calendar-actions">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>
@@ -249,9 +247,7 @@
 <script>
 
 	import Month from '../modules/month.js';
-	import TimepickerByHalfDay from './TimepickerByHalfDay.vue';
-	import TimepickerByHour from './TimepickerByHour.vue';
-	import TimepickerByMinute from './TimepickerByMinute.vue';
+	import Timepicker from './Timepicker.vue';
 	import moment from 'moment';
 
 	//Functions
@@ -263,12 +259,6 @@
 	//Component
 	export default
 	{
-		components:
-		{
-			'timepicker-by-halfday': TimepickerByHalfDay,
-			'timepicker-by-hour': TimepickerByHour,
-			'timepicker-by-minute': TimepickerByMinute,
-		},
 		props: 
 		{
 			date: {},
@@ -283,9 +273,6 @@
 				month: new Month(this.date.month(), this.date.year()),
 				dateProp: this.date,
 	    		timeProp: this.date,
-	    		byHalfDay: false,
-	    		byHour: false,
-	    		byMinute: false,
 	    		hourFocused: false,
 	    		minuteFocused: false,
 	    		hourProp: '',
