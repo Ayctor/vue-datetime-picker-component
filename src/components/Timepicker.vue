@@ -102,6 +102,7 @@
 	.actions
 	{
 		padding: 0 1rem;
+		margin: 1.5rem 0;
 		display: flex;
 		justify-content: flex-end;
 	}
