@@ -104,4 +104,10 @@
 		position: relative;
 		top: 100%;
 	}
+	input
+	{
+		cursor: pointer;
+		width: 110%;
+		background-color: transparent;
+	}
 </style>
