@@ -103,7 +103,6 @@
 	{
 		position: relative;
 		top: 100%;
-		height: 7rem
 	}
 	input
 	{
