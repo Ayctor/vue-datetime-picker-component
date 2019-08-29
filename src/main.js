@@ -6,6 +6,6 @@ Vue.use(Datepicker);
 new Vue({
 	el: '#app',
 	components: {
-		datepicker: Datepicker,
+		datepicker: Datepicker
 	}
 })

@@ -1,38 +1,30 @@
-<template>
-	<div class="timepicker-wrap">
-		<timepicker-by-halfday :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHalfDay"></timepicker-by-halfday>
-		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byHour"></timepicker-by-hour>
-		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="byMinute"></timepicker-by-minute>
-		<div class="timepicker-actions">
-			<button @click="cancel" class="cancel">Annuler</button>
-			<button class="sub" @click="submit">Choisir</button>
-		</div>
-	</div>
-</template>
-
 <script>
 	import TimepickerByHalfDay from './TimepickerByHalfDay.vue';
 	import TimepickerByHour from './TimepickerByHour.vue';
 	import TimepickerByMinute from './TimepickerByMinute.vue';
+	import moment from 'moment';
 
-	export default 
+	export default
 	{
+		name: 'Timepicker',
 		components:
 		{
-			'timepicker-by-halfday': TimepickerByHalfDay,
-			'timepicker-by-hour': TimepickerByHour,
-			'timepicker-by-minute': TimepickerByMinute
+			TimepickerByHalfDay,
+			TimepickerByHour,
+			TimepickerByMinute
 		},
 		props:
 		{
+			date: {},
+			value: { type: String, required: true },
 			statut: { type: String }
 		},
 		data ()
 		{
 			return {
-				byHalfDay: false,
-	    		byHour: false,
-	    		byMinute: false
+				timeProp: moment(),
+	    		hourProp: '',
+	    		minuteProp: ''
 			}
 		},
 		methods:
@@ -58,13 +50,44 @@
 		                }
 					}
 				}
-				this.dateProp = this.dateProp.clone();
-				this.$emit('change', this.dateProp);
+				this.timeProp = this.timeProp.clone();
+				this.$emit('change', this.timeProp);
 			},
 			cancel ()
 			{
 				this.$emit('cancel');
 			},
+			changeHour: function (timeObj)
+			{
+				this.hourProp = timeObj.hourProp;
+				this.minuteProp = timeObj.minuteProp;
+
+				this.timeProp.minute(this.minuteProp);
+				this.timeProp.hour(this.hourProp);
+			},
+		},
+		computed:
+		{
+			hour_formatted ()
+			{
+				return this.timeProp.format('HH')
+			},
+			minute_formatted ()
+			{
+				return this.timeProp.format('mm')
+			},
+		},
+		mounted()
+		{
+			console.log(this.statut)
 		}
-	}
+	};
 </script>
+
+<template>
+	<div class="timepicker-wrap">
+		<timepicker-by-half-day :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-half-day>
+		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-hour>
+		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-minute>
+	</div>
+</template>

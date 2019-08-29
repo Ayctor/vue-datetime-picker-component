@@ -1,24 +1,9 @@
-<style>
-	.calendar-wrap
-	{
-		position: relative;
-		top: 100%;
-	}
-</style>
-
-<template>	
-	<div class="calendar-wrap">
-		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" readonly>
-		<input type="hidden" :name="name"v-model="date_formatted" readonly>
-		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" ></calendar>
-	</div>
-</template>
-
 <script>
 	//Imports
 	import moment from 'moment';
 	moment.locale('fr');
-	import DatepickerCalendarComponent from './DatepickerCalendar.vue';
+	import Calendar from './Calendar.vue';
+	import Timepicker from './Timepicker.vue';
 
 	//Variables
 	const defaultFormat = 'YYYY-MM-DDTHH:mm';
@@ -26,9 +11,11 @@
 	//Component
 	export default
 	{
+		name: 'Datepicker',
 		components: 
 		{
-			'calendar': DatepickerCalendarComponent,
+			Calendar,
+			Timepicker,
 		},
 		props: 
 		{
@@ -80,3 +67,20 @@
 		},
 	};
 </script>
+
+<template>	
+	<div class="calendar-wrap">
+		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" readonly>
+		<input type="hidden" :name="name"v-model="date_formatted" readonly>
+		<calendar :statut="statut" v-model="date_raw" :dateProp="this.date" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" ></calendar>
+		<timepicker statut="byMinute" value="2000-01-01T00:00" format="HH:mm" name="timepicker"></timepicker>
+	</div>
+</template>
+
+<style>
+	.calendar-wrap
+	{
+		position: relative;
+		top: 100%;
+	}
+</style>

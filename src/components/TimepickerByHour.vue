@@ -1,5 +1,88 @@
-<style lang="scss">
+<script>
+	import moment from 'moment';
 
+	export default 
+	{
+		name: 'TimepickerByHour',
+		props: 
+		{
+			value: { type: String, required: true },
+			statut: { type: String },
+			hour: { type: String },
+		},
+		data()
+		{
+			return{		
+	    		hourProp: this.hour,
+	    		hourInt: parseInt(this.hour),
+			}
+		},
+		methods:
+		{
+			addHour()
+			{
+				if(this.hourInt > 22)
+				{
+					this.hourInt = 0
+				} else
+				{
+					this.hourInt++;
+				};
+				this.hourProp = this.hourInt;
+				this.minuteProp = this.minuteInt;
+			},
+			subHour()
+			{
+				if(this.hourInt < 1)
+				{
+					this.hourInt = 23
+				} else
+				{
+					this.hourInt--;
+				};
+				this.hourProp = this.hourInt;
+				this.minuteProp = this.minuteInt;
+			},
+			focusedHour()
+			{
+				this.hourInt=(this.hourInt).toString;
+				this.hourInt="";
+			},
+			sendHour()
+			{
+				this.hourProp = this.hourInt;
+			},
+		},
+		watch:
+		{
+			hourInt ()
+			{
+				this.$emit('change', {'hourProp':this.hourProp});
+			},
+		},
+	};
+</script>
+
+<template>
+	<div class="timepicker-wrap">
+		<div class="hour-timepicker timepicker" >
+			<div class="hour">		
+				<input type="text" name="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >	
+				<div class="timepicker-controls">
+					<button class="timepicker-controls-add" @click="addHour">
+						<img src="../assets/caret-up.svg" alt="add" >
+					</button>
+					<button class="timepicker-controls-sub" @click="subHour">
+						<img src="../assets/caret-down.svg" alt="substract" >
+					</button>
+				</div>
+				<span>H</span>
+			</div>
+		</div>
+	</div>
+</template>
+
+<style lang="scss">
 	$picker-height: 3rem;
 
 	$color-blue: #0075BF;
@@ -91,90 +174,4 @@
 	{
 		opacity:1
 	}
-
 </style>
-
-<template>
-	<div class="timepicker-wrap">
-		<div class="hour-timepicker timepicker" >
-			<div class="hour">		
-				<input type="text" name="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >	
-				<div class="timepicker-controls">
-					<button class="timepicker-controls-add" @click="addHour">
-						<img src="../assets/caret-up.svg" alt="add" >
-					</button>
-					<button class="timepicker-controls-sub" @click="subHour">
-						<img src="../assets/caret-down.svg" alt="substract" >
-					</button>
-				</div>
-				<span>H</span>
-			</div>
-		</div>
-	</div>
-</template>
-
-<script>
-
-	import moment from 'moment';
-
-	export default 
-	{
-		props: 
-		{
-			value: { type: String, required: true },
-			statut: { type: String },
-			hour: { type: String },
-		},
-		data()
-		{
-			return{		
-	    		hourProp: this.hour,
-	    		hourInt: parseInt(this.hour),
-			}
-		},
-		methods:
-		{
-			addHour()
-			{
-				if(this.hourInt > 22)
-				{
-					this.hourInt = 0
-				} else
-				{
-					this.hourInt++;
-				};
-				this.hourProp = this.hourInt;
-				this.minuteProp = this.minuteInt;
-			},
-			subHour()
-			{
-				if(this.hourInt < 1)
-				{
-					this.hourInt = 23
-				} else
-				{
-					this.hourInt--;
-				};
-				this.hourProp = this.hourInt;
-				this.minuteProp = this.minuteInt;
-			},
-			focusedHour()
-			{
-				this.hourInt=(this.hourInt).toString;
-				this.hourInt="";
-			},
-			sendHour()
-			{
-				this.hourProp = this.hourInt;
-			},
-		},
-		watch:
-		{
-			hourInt ()
-			{
-				this.$emit('change', {'hourProp':this.hourProp});
-			},
-		},
-	};
-
-</script>

@@ -1,3 +1,41 @@
+<script>
+	import moment from 'moment';
+
+	export default 
+	{
+		name: 'TimepickerByHalfDay',
+		props: 
+		{
+			value: { type: String, required: true },
+		},
+		data()
+		{
+			return{		
+	    		activeMorning: true,
+	    		activeAfternoon: false,
+			}
+		},
+		methods:
+		{
+			toggleHalfday()
+			{
+				this.activeMorning = !this.activeMorning;
+				this.activeAfternoon = !this.activeAfternoon;
+			},
+		},
+	};
+</script>
+
+<template>
+	<div class="timepicker-wrap">
+		<div class="halfday-timepicker timepicker" >
+			<button :class="{ active: activeMorning }" @click="toggleHalfday()">Matin</button>
+			<button :class="{ active: activeAfternoon }" @click="toggleHalfday()">Après-midi</button>
+			<div class="halfday-switch" v-bind:class="{ active: activeAfternoon }" @click="toggleHalfday()"></div>
+		</div>
+	</div>
+</template>
+
 <style lang="scss">
 
 	$picker-height: 3rem;
@@ -77,42 +115,3 @@
 
 	}
 </style>
-
-<template>
-	<div class="timepicker-wrap">
-		<div class="halfday-timepicker timepicker" >
-			<button :class="{ active: activeMorning }" @click="toggleHalfday()">Matin</button>
-			<button :class="{ active: activeAfternoon }" @click="toggleHalfday()">Après-midi</button>
-			<div class="halfday-switch" v-bind:class="{ active: activeAfternoon }" @click="toggleHalfday()"></div>
-		</div>
-	</div>
-</template>
-
-<script>
-
-	import moment from 'moment';
-
-	export default 
-	{
-		props: 
-		{
-			value: { type: String, required: true },
-		},
-		data()
-		{
-			return{		
-	    		activeMorning: true,
-	    		activeAfternoon: false,
-			}
-		},
-		methods:
-		{
-			toggleHalfday()
-			{
-				this.activeMorning = !this.activeMorning;
-				this.activeAfternoon = !this.activeAfternoon;
-			},
-		},
-	};
-
-</script>
