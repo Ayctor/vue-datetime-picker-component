@@ -339,7 +339,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	timepicker
+	.timepicker-wrap
 	{
 		position: relative;
 		border-top: 1px solid $color-blue-light;
