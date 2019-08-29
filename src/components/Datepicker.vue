@@ -40,7 +40,11 @@
 				this.hideCalendar();
 			},
 			setTime: function (timeProp)
-			{		
+			{	
+				if(this.genre === 'time')
+				{
+					timeProp.minute(0)
+				}
 				this.date=timeProp;
 			},
 			showCalendar ()
@@ -58,7 +62,13 @@
 		{
 			date_formatted () 
 			{
+				if(this.genre === "datetime")
+				{
 				return this.date.format('DD/MM/YYYY HH:mm');
+				} else
+				{	
+					return this.date.format('DD/MM/YYYY');
+				}
 			},	
 			hour_formatted () 
 			{

@@ -95,6 +95,6 @@
 <style>
 	.timepicker-wrap
 	{
-		width: 100%;
+    	width: 24rem;
 	}
 </style>

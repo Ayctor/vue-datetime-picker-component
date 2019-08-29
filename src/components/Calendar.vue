@@ -82,7 +82,8 @@
 			},
 			submit ()
 			{
-
+				this.dateProp = this.dateProp.clone();
+				this.$emit('setDate', this.dateProp);
 			},
 			cancel ()
 			{
