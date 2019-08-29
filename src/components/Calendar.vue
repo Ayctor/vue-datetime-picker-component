@@ -30,7 +30,7 @@
 			return {
 				weekdays: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
 				month: new Month(this.date.month(), this.date.year()),
-				dateProp: this.date,
+				dateProp: moment(),
 	    		hourFocused: false,
 	    		minuteFocused: false,
 	    		invalidDate: false,
@@ -72,29 +72,17 @@
 				}
 				this.month = new Month(month, year)
 			},
+			setTime: function (timeProp)
+			{	
+				let hourProp = timeProp.format('HH');
+				let minuteProp = timeProp.format('mm');
+				this.dateProp.hour(hourProp);
+				this.dateProp.minute(minuteProp);
+				this.$emit('setDate', this.dateProp);
+			},
 			submit ()
 			{
-				// check hours
-				if(!(this.statut === 'byHalfDay'))
-				{
-	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
-	                {
-	                    alert('Format d\'heure invalide');
-	                    return false;
-	                }
 
-					if(!(this.statut === 'byHour'))
-					{
-		                // check minutes
-		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
-		                {
-		                    alert('Format de minute invalide');
-		                    return false;
-		                }
-					}
-				}
-				this.timeProp = this.timeProp.clone();
-				this.$emit('change', this.timeProp);
 			},
 			cancel ()
 			{
@@ -111,14 +99,6 @@
 			{
 				return this.dateProp.format('ddd, D MMMM').capitalize();
 			},
-		},
-		mounted()
-		{
-			console.log('calendar date: '+this.date);
-			console.log('calendar genre: '+this.genre);
-			console.log('calendar statut: '+this.statut);
-			console.log('calendar hourProp: '+this.hourProp);
-			console.log('calendar minuteProp: '+this.minuteProp);
 		}
 	};
 </script>
@@ -158,8 +138,8 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
-			<timepicker :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
-			<div class="actions">
+			<timepicker @setTime="setTime" :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
+			<div class="actions" v-if="genre === 'date'">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>
 			</div>

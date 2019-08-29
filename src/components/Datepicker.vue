@@ -34,15 +34,14 @@
 		},
 		methods:
 		{
-			setDate: function (selectedDate)
+			setDate: function (dateProp)
 			{
-				this.date = selectedDate;
+				this.date = dateProp;
 				this.hideCalendar();
 			},
 			setTime: function (timeProp)
 			{		
 				this.date=timeProp;
-				console.log(this.date);
 			},
 			showCalendar ()
 			{
@@ -59,7 +58,7 @@
 		{
 			date_formatted () 
 			{
-				return this.date.format('DD/MM/YYYY');
+				return this.date.format('DD/MM/YYYY HH:mm');
 			},	
 			hour_formatted () 
 			{
@@ -72,7 +71,6 @@
 		},
 		mounted()
 		{
-			console.log(this.date)
 		}
 	};
 </script>
@@ -85,7 +83,7 @@
 		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
 		<input type="hidden" :name="name" v-model="date_formatted" readonly>
 
-		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @change="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" ></calendar>
+		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" ></calendar>
 		<timepicker :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" v-if="genre === 'time'"></timepicker>
 	</div>
 </template>

@@ -76,9 +76,6 @@
 			{
 				return this.timeProp.format('mm')
 			},
-		},
-		mounted()
-		{
 		}
 	};
 </script>
@@ -88,7 +85,7 @@
 		<timepicker-by-half-day :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHalfDay'"></timepicker-by-half-day>
 		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHour'"></timepicker-by-hour>
 		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byMinute'"></timepicker-by-minute>
-		<div class="actions" v-if="genre === 'time'">
+		<div class="actions" v-if="genre === 'time' || genre === 'datetime'">
 			<button @click="cancel" class="cancel">Annuler</button>
 			<button class="sub" @click="submit">Choisir</button>
 		</div>
