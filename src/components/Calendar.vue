@@ -289,11 +289,11 @@
 		background-color: $color-blue;
 		opacity: 1;
 	}
-		.actions
+	.actions
 	{
 		padding: 0 1rem;
 		display: flex;
-		justify-content: flex-start;
+		justify-content: flex-end;
 
 		button
 		{

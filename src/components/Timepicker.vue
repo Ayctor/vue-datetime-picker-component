@@ -43,6 +43,8 @@
 				// check hours
 				if(!(this.statut === 'byHalfDay'))
 				{
+					this.hourProp = moment().hour();
+					this.minuteProp= moment().minute();
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
 	                {
 	                    alert('Format d\'heure invalide');
@@ -97,4 +99,47 @@
 	{
     	width: 24rem;
 	}
+	.actions
+	{
+		padding: 0 1rem;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+		button
+		{
+			border: none;
+			cursor: pointer;
+			background-color: transparent;
+			outline: none;	
+			font-size: 0.86rem;
+			font-weight: 500;
+			text-transform: uppercase;
+			min-width: 6rem;
+			padding: 1rem;
+			transition: all 0.3s;
+
+			&:hover
+			{
+				background-color: $color-grey
+			}
+		}
+		
+		.cancel
+		{
+			color: #8795a1;
+		}
+		
+		.sub
+		{
+			color: #0075BF;
+		}
+		.slide-enter-active, .slide-leave-active 
+		{
+			transition: opacity .5s;
+		}
+		.slide-enter, .slide-leave-to 
+		{
+			opacity: 0;
+		}
 </style>
