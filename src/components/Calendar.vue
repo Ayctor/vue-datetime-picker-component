@@ -13,12 +13,17 @@
 	export default
 	{
 		name: 'Calendar',
+		components:
+		{
+			Timepicker
+		},
 		props: 
 		{
 			date: {},
 			displayedCalendar: {type: Boolean, default: true},
 			value: { type: String, required: true },
 			statut: { type: String },
+			genre: { type: String }
 		},
 		data ()
 		{
@@ -26,13 +31,10 @@
 				weekdays: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
 				month: new Month(this.date.month(), this.date.year()),
 				dateProp: this.date,
-	    		timeProp: this.date,
 	    		hourFocused: false,
 	    		minuteFocused: false,
-	    		hourProp: '',
-	    		minuteProp: '',
 	    		invalidDate: false,
-	    		regex: /^[0-9]$/,
+	    		regex: /^[0-9]$/
 			}
 		},
 		methods:
@@ -73,26 +75,26 @@
 			submit ()
 			{
 				// check hours
-				// if(!(this.statut === 'byHalfDay'))
-				// {
-	   //              if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
-	   //              {
-	   //                  alert('Format d\'heure invalide');
-	   //                  return false;
-	   //              }
+				if(!(this.statut === 'byHalfDay'))
+				{
+	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
+	                {
+	                    alert('Format d\'heure invalide');
+	                    return false;
+	                }
 
-				// 	if(!(this.statut === 'byHour'))
-				// 	{
-		  //               // check minutes
-		  //               if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
-		  //               {
-		  //                   alert('Format de minute invalide');
-		  //                   return false;
-		  //               }
-				// 	}
-				// }
-				this.dateProp = this.dateProp.clone();
-				this.$emit('change', this.dateProp);
+					if(!(this.statut === 'byHour'))
+					{
+		                // check minutes
+		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
+		                {
+		                    alert('Format de minute invalide');
+		                    return false;
+		                }
+					}
+				}
+				this.timeProp = this.timeProp.clone();
+				this.$emit('change', this.timeProp);
 			},
 			cancel ()
 			{
@@ -110,6 +112,14 @@
 				return this.dateProp.format('ddd, D MMMM').capitalize();
 			},
 		},
+		mounted()
+		{
+			console.log('calendar date: '+this.date);
+			console.log('calendar genre: '+this.genre);
+			console.log('calendar statut: '+this.statut);
+			console.log('calendar hourProp: '+this.hourProp);
+			console.log('calendar minuteProp: '+this.minuteProp);
+		}
 	};
 </script>
 
@@ -148,8 +158,8 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
-			<!-- <timepicker :statut="statut" :value="value" :date.sync="date"></timepicker> -->
-			<div class="calendar-actions">
+			<timepicker :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
+			<div class="actions">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>
 			</div>
@@ -224,6 +234,7 @@
 			outline: none;
 		}
 	}
+
 	.calendar-weekdays
 	{
 		font-size: $font-base;
@@ -297,11 +308,11 @@
 		background-color: $color-blue;
 		opacity: 1;
 	}
-	.calendar-actions
+		.actions
 	{
 		padding: 0 1rem;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: flex-start;
 
 		button
 		{
@@ -345,7 +356,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		align-items: ceneter;
+		align-items: center;
 	}
 	timepicker
 	{
