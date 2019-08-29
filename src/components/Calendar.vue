@@ -342,8 +342,6 @@
 	.timepicker-wrap
 	{
 		position: relative;
-		border-top: 1px solid $color-blue-light;
-		height: 4em;
 		width : 100%;
 	}
 </style>
