@@ -86,8 +86,15 @@
 
 <template>
 	<div class="timepicker-wrap">
-		<timepicker-by-half-day :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-half-day>
-		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-hour>
-		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour"></timepicker-by-minute>
+		<timepicker-by-half-day :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="statut === 'byHalfDay'"></timepicker-by-half-day>
+		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="statut === 'byHour'"></timepicker-by-hour>
+		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :date.sync="date" name="hour-start" @change="changeHour" v-if="statut === 'byMinute'"></timepicker-by-minute>
 	</div>
 </template>
+
+<style>
+	.timepicker-wrap
+	{
+		width: 50%;
+	}
+</style>

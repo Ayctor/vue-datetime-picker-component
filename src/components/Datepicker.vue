@@ -22,6 +22,7 @@
 			value: { type: String, required: true },
 			name: { type: String },
 			statut: { type: String },
+			genre: { type: String }
 		},
 		data () 
 		{

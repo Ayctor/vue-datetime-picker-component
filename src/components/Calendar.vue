@@ -73,68 +73,30 @@
 			submit ()
 			{
 				// check hours
-				if(!(this.statut === 'byDay')&&!(this.statut === 'byHalfDay'))
-				{
-	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
-	                {
-	                    alert('Format d\'heure invalide');
-	                    return false;
-	                }
+				// if(!(this.statut === 'byHalfDay'))
+				// {
+	   //              if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
+	   //              {
+	   //                  alert('Format d\'heure invalide');
+	   //                  return false;
+	   //              }
 
-					if(!(this.statut === 'byHour'))
-					{
-		                // check minutes
-		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
-		                {
-		                    alert('Format de minute invalide');
-		                    return false;
-		                }
-					}
-				}
+				// 	if(!(this.statut === 'byHour'))
+				// 	{
+		  //               // check minutes
+		  //               if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
+		  //               {
+		  //                   alert('Format de minute invalide');
+		  //                   return false;
+		  //               }
+				// 	}
+				// }
 				this.dateProp = this.dateProp.clone();
 				this.$emit('change', this.dateProp);
 			},
 			cancel ()
 			{
 				this.$emit('cancel');
-			},
-			changeHour: function (timeObj)
-			{
-				this.hourProp = timeObj.hourProp;
-				this.minuteProp = timeObj.minuteProp;
-
-				this.dateProp.minute(this.minuteProp);
-				this.dateProp.hour(this.hourProp);
-			},
-			isHalfDay ()
-			{
-				if(this.statut === 'byHalfDay') 
-				{	
-					this.byHalfDay = true
-				} else
-				{
-					this.byMinute = false
-				}
-			},
-			isHour ()
-			{
-				if(this.statut === 'byHour') 
-				{	
-					this.byHour = true
-				}else
-				{
-					this.byMinute = false
-				}
-			},
-			isMinute ()
-			{
-				if(this.statut === 'byMinute') 
-				{	
-					this.byMinute = true
-				} else
-				{
-					this.byMinute = false
-				}
 			},
 		},
 		computed: 
@@ -147,21 +109,7 @@
 			{
 				return this.dateProp.format('ddd, D MMMM').capitalize();
 			},
-			hour_formatted ()
-			{
-				return this.dateProp.format('HH')
-			},
-			minute_formatted ()
-			{
-				return this.dateProp.format('mm')
-			},
 		},
-		mounted ()
-		{
-			this.isHalfDay();
-			this.isHour();
-			this.isMinute();
-		}
 	};
 </script>
 
