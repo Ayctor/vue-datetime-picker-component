@@ -36,6 +36,10 @@
 		{
 			setDate: function (dateProp)
 			{
+				if(this.genre === 'datetime' && this.statut === 'byHour')
+				{
+					dateProp.minute(0);
+				}
 				this.date = dateProp;
 				this.hideCalendar();
 			},
@@ -43,8 +47,8 @@
 			{	
 				if(this.genre === 'time')
 				{
-					timeProp.minute(0)
-				}
+					timeProp.minute(0);
+				};
 				this.date=timeProp;
 			},
 			showCalendar ()
@@ -107,7 +111,7 @@
 	input
 	{
 		cursor: pointer;
-		width: 110%;
+		width: 100%;
 		background-color: transparent;
 	}
 </style>
