@@ -192,6 +192,7 @@
 		background-color: #fff;
 		box-shadow: 0 2px 14px 0 rgba(0, 0, 0, .40);
 		border-radius: 0 0 0.5rem 0.5rem;
+		width: $header-width;
 	}
 	.calendar-header
 	{
@@ -217,7 +218,7 @@
 	{
 		font-size: $font-2xl;
 		font-weight: $weight-thin;
-		padding: 2rem;
+		padding: 2rem 0;
 		height: 1rem;
 		display: flex;
 		flex-direction: row;
@@ -253,6 +254,7 @@
 		width: $header-width;
 		display: flex;
 		flex-wrap: wrap;
+    	margin-bottom: 4rem;
 	}
 	.calendar-day
 	{
