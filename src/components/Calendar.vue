@@ -21,6 +21,7 @@
 		props: 
 		{
 			date: {},
+			name: { type: String },
 			displayedCalendar: {type: Boolean, default: true},
 			value: { type: String, required: true },
 			statut: { type: String },
@@ -47,7 +48,7 @@
 			},
 			isDisabled: function (day)
 			{
-				if(this.today && day.isBefore(moment(), 'day'))
+				if(this.today && this.name==="date-start" && day.isBefore(moment(), 'day'))
 				{
 					return day
 				} else
@@ -117,6 +118,7 @@
 		},
 		mounted()
 		{
+			
 		}
 	};
 </script>

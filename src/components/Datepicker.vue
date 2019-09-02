@@ -61,7 +61,7 @@
 			{
 				this.visibleCalendar = false;
 				document.removeEventListener('click', this.hideCalendar)
-			},
+			}
 		},
 		computed: 
 		{
@@ -86,10 +86,6 @@
 		},
 		mounted()
 		{
-			if (this.today)
-			{
-				this.date = moment();
-			};
 		}
 	};
 </script>
@@ -102,7 +98,7 @@
 		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
 		<input type="hidden" :name="name" v-model="date_formatted" readonly>
 
-		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today"></calendar>
+		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today" :name="name"></calendar>
 		<timepicker :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" v-if="genre === 'time'"></timepicker>
 	</div>
 </template>
