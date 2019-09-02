@@ -47,9 +47,12 @@
 			},
 			isDisabled: function (day)
 			{
-				if(day.isBefore(moment(), 'day'))
+				if(this.today && day.isBefore(moment(), 'day'))
 				{
 					return day
+				} else
+				{
+					return ''
 				}
 			},
 			selectDate: function (day)
@@ -111,6 +114,9 @@
 			{
 				return this.dateProp.format('ddd, D MMMM').capitalize();
 			},
+		},
+		mounted()
+		{
 		}
 	};
 </script>
