@@ -22,7 +22,8 @@
 			value: { type: String, required: true },
 			name: { type: String },
 			statut: { type: String },
-			genre: { type: String }
+			genre: { type: String },
+			today: { type:Boolean }
 		},
 		data () 
 		{
@@ -81,10 +82,14 @@
 			date_raw () 
 			{
 				return this.date.format(defaultFormat)
-			},
+			}
 		},
 		mounted()
 		{
+			if (this.today)
+			{
+				this.date = moment();
+			}
 		}
 	};
 </script>

@@ -2,6 +2,7 @@
 	import Month from '../modules/month.js';
 	import Timepicker from './Timepicker.vue';
 	import moment from 'moment';
+	import 'moment-range';
 
 	//Functions
 	String.prototype.capitalize = function() 
@@ -23,14 +24,15 @@
 			displayedCalendar: {type: Boolean, default: true},
 			value: { type: String, required: true },
 			statut: { type: String },
-			genre: { type: String }
+			genre: { type: String },
+			today: { type: Boolean }
 		},
 		data ()
 		{
 			return {
 				weekdays: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
 				month: new Month(this.date.month(), this.date.year()),
-				dateProp: moment(),
+				dateProp: this.date,
 	    		hourFocused: false,
 	    		minuteFocused: false,
 	    		invalidDate: false,
@@ -43,12 +45,21 @@
 			{
 				return this.dateProp.dayOfYear() === day.dayOfYear();
 			},
+			isDisabled: function (day)
+			{
+				if(day.isBefore(moment(), 'day'))
+				{
+					return day
+				}
+			},
 			selectDate: function (day)
 			{
 				let dayClone = day.clone()
 				dayClone.hours(parseInt(this.hourProp));
 				dayClone.minutes(parseInt(this.minuteProp));
 				return this.dateProp = dayClone;
+
+				console.log(this.dateProp)
 			},
 			nextMonth ()
 			{
@@ -121,7 +132,7 @@
 				</button>
 				<div class="calendar-controls-month">
 					{{month.getFormatted()}}
-				</div>
+				</div> 
 				<button class="calendar-controls-next" @click="nextMonth()">
 					<img src="../assets/chevron-right.svg" alt="next">
 				</button>
@@ -134,7 +145,7 @@
 			<div class="calendar-days">
 				<div class="calendar-day" :style="{ width: (month.getWeekBeginning()*3) + 'rem'}">
 				</div>
-				<div class="calendar-day" @click="selectDate(day)" v-for="day in month.getMonthDays()" :class="{'selected': isSelected(day)}">
+				<div class="calendar-day" @click="selectDate(day)" v-for="day in month.getMonthDays()" :class="{'selected': isSelected(day), 'disabled': isDisabled(day)}">
 					<span class="calendar-day-text">{{day.format('D')}}</span>
 					<span class="calendar-day-effect"></span>
 				</div>
@@ -271,11 +282,21 @@
 		color: #fff;
 	}
 
-
 	.calendar-day:hover .calendar-day-effect
 	{
 		transform: scale(1);
 		opacity: 0.6;
+	}
+	
+	.calendar-day.disabled
+	{
+		opacity: 0.3;
+		pointer-events: none;
+		cursor: default;
+	}
+	.calendar-day.disabled .calendar-day-effect
+	{
+		opacity: 0;
 	}
 
 	.calendar-day.selected 
