@@ -42,18 +42,21 @@
 		},
 		methods:
 		{
-			isSelected: function (day)
+			isSelected (day)
 			{
 				return this.dateProp.dayOfYear() === day.dayOfYear();
 			},
-			isDisabled: function (day)
+			isDisabled (day)
 			{
 				if(this.today)
 				{
-					if(this.name==="date-start" && day.isBefore(this.$store.state.value, 'day'))
+					if(this.name==="date-start" && day.isBefore(moment(), 'day'))
 					{
 						return day
-					} else if (this.name==="date-end" && day.isBefore(this.$store.state.value, 'day'))
+					} else if (this.name==="date-start" && day.isAfter(this.$store.state.valueEnd, 'day'))
+					{
+						return day
+					} else if (this.name==="date-end" && day.isBefore(this.$store.state.valueStart, 'day'))
 					{
 						return day
 					} else
@@ -62,12 +65,9 @@
 					}
 				}
 			},
-			selectDate: function (day)
+			selectDate (day)
 			{
-				let dayClone = day.clone()
-				dayClone.hours(parseInt(this.hourProp));
-				dayClone.minutes(parseInt(this.minuteProp));
-				return this.dateProp = dayClone;
+				return this.dateProp = day;
 			},
 			nextMonth ()
 			{
@@ -91,7 +91,7 @@
 				}
 				this.month = new Month(month, year)
 			},
-			setTime: function (timeProp)
+			setTime (timeProp)
 			{	
 				let hourProp = timeProp.format('HH');
 				let minuteProp = timeProp.format('mm');
@@ -105,7 +105,7 @@
 				this.$emit('setDate', this.dateProp);
 			},
 			cancel ()
-			{
+			{ 
 				this.$emit('cancel');
 			},
 		},
@@ -161,7 +161,7 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
-			<timepicker @setTime="setTime" :genre="genre" :statut="statut" value="2000-01-01T00:00" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
+			<timepicker @setTime="setTime" @cancel="cancel" :genre="genre" :statut="statut" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
 			<div class="actions" v-if="genre === 'date'">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>

@@ -8,7 +8,8 @@ Vue.use(Datepicker);
 
 const store = new Vuex.Store({
   state: {
-  	value: moment()
+  	valueStart: moment(),
+  	valueEnd: moment("2075-12-25")
   },
   mutations: {
   }

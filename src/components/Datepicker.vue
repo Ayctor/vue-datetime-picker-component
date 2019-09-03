@@ -28,8 +28,7 @@
 		{
 			return {
 				visibleCalendar: false,
-				date: moment(),
-				timeProp: ''
+				date: moment()
 			}
 		},
 		methods:
@@ -39,21 +38,26 @@
 				if(this.genre === 'datetime' && this.statut === 'byHour')
 				{
 					dateProp.minute(0);
-				}
-				this.date = dateProp;
-				if(this.name==='date-start')
+				};
+
+				if(this.name === 'date-start')
 				{
-					this.$store.state.value= dateProp;
-				}
+					this.$store.state.valueStart= dateProp;
+				} else if(this.name === 'date-end')
+				{
+					this.$store.state.valueEnd= dateProp;
+				};
+				this.date = dateProp;
 				this.hideCalendar();
+				console.log(this.date)
 			},
-			setTime: function (timeProp)
-			{	
+			setTime (timeProp)
+			{
 				if(this.genre === 'time')
 				{
 					timeProp.minute(0);
 				};
-				this.date=timeProp;
+				this.date = timeProp;
 			},
 			showCalendar ()
 			{
@@ -72,16 +76,15 @@
 			{
 				if(this.genre === "datetime")
 				{
-				return this.date.format('DD/MM/YYYY HH:mm');
-				} else
+					return this.date.format('DD/MM/YYYY HH:mm');
+				} else if (this.genre === "date")
 				{	
 					return this.date.format('DD/MM/YYYY');
+				} else if (this.genre === "time")
+				{
+					return this.date.format('HH:mm');
 				}
 			},	
-			hour_formatted () 
-			{
-				return this.date.format('HH:mm')
-			},
 			date_raw () 
 			{
 				return this.date.format(defaultFormat)
@@ -95,14 +98,11 @@
 
 <template>	
 	<div class="calendar-wrap">
-		<input type="text" class="datepicker_input" v-model="hour_formatted" @focus="" v-if="genre === 'time'" readonly>
-		<input type="hidden" :name="name" v-model="date_formatted" readonly>
-
-		<input type="text" class="datepicker_input" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
+		<input type="text" class="datepicker_input" v-model="date_formatted" @click="showCalendar" @focus="" readonly>
 		<input type="hidden" :name="name" v-model="date_formatted" readonly>
 
 		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today" :name="name"></calendar>
-		<timepicker :genre="genre" :statut="statut" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" v-if="genre === 'time'"></timepicker>
+		<timepicker :genre="genre" :statut="statut" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" @cancel="hideCalendar" v-if="genre === 'time'"></timepicker>
 	</div>
 </template>
 

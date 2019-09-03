@@ -16,7 +16,6 @@
 		props:
 		{
 			date: {},
-			value: { type: String, required: true },
 			statut: { type: String },
 			genre: { type: String }
 		},
@@ -38,19 +37,19 @@
 				this.timeProp.minute(this.minuteProp);
 				this.timeProp.hour(this.hourProp);
 			},
-			submit ()
+			submitTime ()
 			{
+				this.hourProp = this.timeProp.hour();
+				this.minuteProp = this.timeProp.minute();
 				// check hours
-				if(!(this.statut === 'byHalfDay'))
+				if(this.statut !== 'byHalfDay')
 				{
-					this.hourProp = moment().hour();
-					this.minuteProp= moment().minute();
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
 	                {
 	                    alert('Format d\'heure invalide');
 	                    return false;
 	                }
-					if(!(this.statut === 'byHour'))
+					if(this.statut !== 'byHour')
 					{
 		                // check minutes
 		                if (isNaN(parseInt(this.minuteProp)) || parseInt(this.minuteProp) >= 60 || parseInt(this.minuteProp) < 0) 
@@ -60,7 +59,6 @@
 		                }
 					}
 				}
-				this.timeProp = this.timeProp.clone();
 				this.$emit('setTime', this.timeProp);
 			},
 			cancel ()
@@ -84,12 +82,12 @@
 
 <template>
 	<div class="timepicker-wrap">
-		<timepicker-by-half-day :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHalfDay'"></timepicker-by-half-day>
-		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHour'"></timepicker-by-hour>
-		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :value="value" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byMinute'"></timepicker-by-minute>
+		<timepicker-by-half-day :statut="statut" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHalfDay'"></timepicker-by-half-day>
+		<timepicker-by-hour  :hour="hour_formatted" :statut="statut" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byHour'"></timepicker-by-hour>
+		<timepicker-by-minute :hour="hour_formatted" :minute="minute_formatted" :statut="statut" :timeProp.sync="timeProp" name="hour-start" @change="changeHour" v-if="statut === 'byMinute'"></timepicker-by-minute>
 		<div class="actions" v-if="genre === 'time' || genre === 'datetime'">
 			<button @click="cancel" class="cancel">Annuler</button>
-			<button class="sub" @click="submit">Choisir</button>
+			<button class="sub" @click="submitTime">Choisir</button>
 		</div>
 	</div>
 </template>
