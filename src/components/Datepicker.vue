@@ -86,6 +86,7 @@
 		},
 		mounted()
 		{
+			console.log(this.value)
 		}
 	};
 </script>
