@@ -50,7 +50,7 @@
 			{
 				if(this.today)
 				{
-					if(this.name==="date-start" && day.isBefore(moment(), 'day'))
+					if(this.name==="date-start" && day.isBefore(this.$store.state.value, 'day'))
 					{
 						return day
 					} else if (this.name==="date-end" && day.isBefore(this.$store.state.value, 'day'))
