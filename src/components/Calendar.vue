@@ -48,12 +48,18 @@
 			},
 			isDisabled: function (day)
 			{
-				if(this.today && this.name==="date-start" && day.isBefore(moment(), 'day'))
+				if(this.today)
 				{
-					return day
-				} else
-				{
-					return ''
+					if(this.name==="date-start" && day.isBefore(moment(), 'day'))
+					{
+						return day
+					} else if (this.name==="date-end" && day.isBefore(this.$store.state.value, 'day'))
+					{
+						return day
+					} else
+					{
+						return ''
+					}
 				}
 			},
 			selectDate: function (day)
@@ -62,8 +68,6 @@
 				dayClone.hours(parseInt(this.hourProp));
 				dayClone.minutes(parseInt(this.minuteProp));
 				return this.dateProp = dayClone;
-
-				console.log(this.dateProp)
 			},
 			nextMonth ()
 			{
@@ -118,7 +122,6 @@
 		},
 		mounted()
 		{
-			
 		}
 	};
 </script>

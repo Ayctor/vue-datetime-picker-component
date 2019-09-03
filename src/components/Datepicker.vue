@@ -19,7 +19,6 @@
 		},
 		props: 
 		{
-			value: { type: String, required: true },
 			name: { type: String },
 			statut: { type: String },
 			genre: { type: String },
@@ -42,6 +41,10 @@
 					dateProp.minute(0);
 				}
 				this.date = dateProp;
+				if(this.name==='date-start')
+				{
+					this.$store.state.value= dateProp;
+				}
 				this.hideCalendar();
 			},
 			setTime: function (timeProp)
@@ -86,7 +89,6 @@
 		},
 		mounted()
 		{
-			console.log(this.$store.state.date)
 		}
 	};
 </script>
