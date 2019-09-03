@@ -93,7 +93,7 @@
 			},
 			setTime (timeProp)
 			{	
-				this.dateProp = timeProp;
+				console.log()
 				let hourProp = timeProp.format('HH');
 				let minuteProp = timeProp.format('mm');
 				this.dateProp.hour(hourProp);

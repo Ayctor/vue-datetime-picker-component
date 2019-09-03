@@ -37,10 +37,10 @@
 				this.timeProp.minute(this.minuteProp);
 				this.timeProp.hour(this.hourProp);
 			},
-			submitTime ()
+			submitTime (timeProp)
 			{
-				this.hourProp = this.timeProp.hour();
-				this.minuteProp = this.timeProp.minute();
+				// this.hourProp = this.timeProp.hour();
+				// this.minuteProp = this.timeProp.minute();
 				// check hours
 				if(this.statut !== 'byHalfDay')
 				{
