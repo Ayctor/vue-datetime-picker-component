@@ -92,10 +92,10 @@
 
 <template>	
 	<div class="calendar-wrap">
-		<input type="text" v-model="hour_formatted" @focus="" v-if="genre === 'time'" readonly>
+		<input type="text" class="datepicker_input" v-model="hour_formatted" @focus="" v-if="genre === 'time'" readonly>
 		<input type="hidden" :name="name" v-model="date_formatted" readonly>
 
-		<input type="text" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
+		<input type="text" class="datepicker_input" v-model="date_formatted" @click="showCalendar" @focus="" v-if="genre === 'datetime' || genre === 'date'" readonly>
 		<input type="hidden" :name="name" v-model="date_formatted" readonly>
 
 		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today" :name="name"></calendar>
