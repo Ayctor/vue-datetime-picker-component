@@ -23,7 +23,6 @@
 			date: {},
 			name: { type: String },
 			displayedCalendar: {type: Boolean, default: true},
-			value: { type: String, required: true },
 			statut: { type: String },
 			genre: { type: String },
 			today: { type: Boolean }
@@ -67,6 +66,7 @@
 			},
 			selectDate (day)
 			{
+				console.log(this.date.format('DD/MM/YYYY HH:mm'))
 				return this.dateProp = day;
 			},
 			nextMonth ()
@@ -93,6 +93,7 @@
 			},
 			setTime (timeProp)
 			{	
+				this.dateProp = timeProp;
 				let hourProp = timeProp.format('HH');
 				let minuteProp = timeProp.format('mm');
 				this.dateProp.hour(hourProp);
@@ -161,7 +162,7 @@
 					<span class="calendar-day-effect"></span>
 				</div>
 			</div>
-			<timepicker @setTime="setTime" @cancel="cancel" :genre="genre" :statut="statut" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
+			<timepicker :date.sync="date" @setTime="setTime" @cancel="cancel" :genre="genre" :statut="statut" format="HH:mm" name="timepicker" v-if="genre === 'datetime'"></timepicker>
 			<div class="actions" v-if="genre === 'date'">
 				<button @click="cancel" class="cancel">Annuler</button>
 				<button class="sub" @click="submit">Choisir</button>

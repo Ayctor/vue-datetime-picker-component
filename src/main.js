@@ -5,7 +5,6 @@ import moment from 'moment';
 
 Vue.use(Vuex);
 Vue.use(Datepicker);
-
 const store = new Vuex.Store({
   state: {
   	valueStart: moment(),

@@ -49,7 +49,6 @@
 				};
 				this.date = dateProp;
 				this.hideCalendar();
-				console.log(this.date)
 			},
 			setTime (timeProp)
 			{
@@ -84,6 +83,8 @@
 				{
 					return this.date.format('HH:mm');
 				}
+				console.log(this.date.format('DD/MM/YYYY HH:mm'))
+				return this.date.format('DD/MM/YYYY HH:mm');
 			},	
 			date_raw () 
 			{

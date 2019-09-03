@@ -76,6 +76,9 @@
 			{
 				return this.timeProp.format('mm')
 			},
+		},
+		mounted()
+		{
 		}
 	};
 </script>
