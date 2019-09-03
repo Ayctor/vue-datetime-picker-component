@@ -86,7 +86,7 @@
 		},
 		mounted()
 		{
-			console.log(this.value)
+			console.log(this.$store.state.date)
 		}
 	};
 </script>
