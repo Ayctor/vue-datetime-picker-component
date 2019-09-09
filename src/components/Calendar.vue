@@ -3,6 +3,7 @@
 	import Timepicker from './Timepicker.vue';
 	import moment from 'moment';
 	import 'moment-range';
+	moment.locale('fr');
 
 	//Functions
 	String.prototype.capitalize = function() 

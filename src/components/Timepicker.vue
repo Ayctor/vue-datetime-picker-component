@@ -3,6 +3,7 @@
 	import TimepickerByHour from './TimepickerByHour.vue';
 	import TimepickerByMinute from './TimepickerByMinute.vue';
 	import moment from 'moment';
+	moment.locale('fr');
 
 	export default
 	{
@@ -39,8 +40,8 @@
 			},
 			submitTime (timeProp)
 			{
-				// this.hourProp = this.timeProp.hour();
-				// this.minuteProp = this.timeProp.minute();
+				this.hourProp = this.timeProp.hour();
+				this.minuteProp = this.timeProp.minute();
 				// check hours
 				if(this.statut !== 'byHalfDay')
 				{

@@ -1,6 +1,7 @@
 <script>
 	//Imports
 	import moment from 'moment';
+	import 'moment/locale/fr'
 	moment.locale('fr');
 	import Calendar from './Calendar.vue';
 	import Timepicker from './Timepicker.vue';
@@ -83,8 +84,8 @@
 				// {
 				// 	return this.date.format('HH:mm');
 				// }
-				return this.date
-					
+				let formattedDate = (this.date).format('LLLL')
+				return formattedDate
 			},
 			date_raw () 
 			{
