@@ -67,7 +67,6 @@
 			},
 			selectDate (day)
 			{
-				console.log(this.date.format('DD/MM/YYYY HH:mm'))
 				return this.dateProp = day;
 			},
 			nextMonth ()
@@ -94,7 +93,6 @@
 			},
 			setTime (timeProp)
 			{	
-				console.log()
 				let hourProp = timeProp.format('HH');
 				let minuteProp = timeProp.format('mm');
 				this.dateProp.hour(hourProp);
