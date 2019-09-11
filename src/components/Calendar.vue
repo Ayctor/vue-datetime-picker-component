@@ -170,10 +170,10 @@
 	</transition>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	$header-height: 6rem;
-	$header-width: 24rem;
-	$weekday-size: 3rem;
+	$header-width: 20rem;
+	$weekday-size: 2.75rem;
 
 	$weight-thin: 200;
 	$weight-light: 300;
@@ -183,7 +183,7 @@
 	$font-sm: 0.86rem;
 	$font-base: 1rem;
 	$font-2xl: 1.5rem;
-	$font-3xl: 1.875rem;
+	$font-3xl: 1.75rem;
 
 	$color-blue: #0075BF;
 	$color-blue-light: #3499D9;
@@ -259,7 +259,7 @@
 		width: $header-width;
 		display: flex;
 		flex-wrap: wrap;
-    	margin-bottom: 4rem;
+    	margin-bottom: 6rem;
 	}
 	.calendar-day
 	{
@@ -278,8 +278,8 @@
 	.calendar-day-effect
 	{
 		position: absolute;
-		left: 0.25rem;
-		top: 0.25rem;
+		left: 0.15rem;
+		top: 0.15rem;
 		z-index: 0;
 		height: 2.5rem;
 		width: 2.5rem;

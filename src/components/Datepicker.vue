@@ -107,7 +107,24 @@
 	</div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+	$header-height: 6rem;
+	$header-width: 22rem;
+	$weekday-size: 3rem;
+
+	$weight-thin: 200;
+	$weight-light: 300;
+	$weight-normal: 400;
+	$weight-medium: 500;
+
+	$font-sm: 0.86rem;
+	$font-base: 1rem;
+	$font-2xl: 1.5rem;
+	$font-3xl: 1.875rem;
+	$color-blue: #0075BF;
+	$color-blue-light: #3499D9;
+	$color-grey: #F4F4F4;
+	$color-grey-dark: #8795a1;
 	.calendar-wrap
 	{
 		position: relative;

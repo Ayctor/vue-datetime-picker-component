@@ -96,10 +96,16 @@
 	</div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+	$header-width: 20rem;
+	$color-blue: #0075BF;
+	$color-grey: #F4F4F4;
+	$color-grey-dark: #8795a1;
+
 	.timepicker-wrap
 	{
-    	width: 24rem;
+    	width: $header-width;
 	}
 	.actions
 	{
@@ -129,12 +135,12 @@
 		
 		.cancel
 		{
-			color: #8795a1;
+			color: $color-grey-dark;
 		}
 		
 		.sub
 		{
-			color: #0075BF;
+			color: $color-blue;
 		}
 		.slide-enter-active, .slide-leave-active 
 		{

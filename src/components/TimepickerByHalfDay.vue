@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
 
-	$picker-height: 3rem;
+	$picker-height: 2rem;
 
 	$color-blue: #0075BF;
 	$color-blue-vivid: #3499d9;
