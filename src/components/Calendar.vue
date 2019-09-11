@@ -223,7 +223,7 @@
 	{
 		font-size: $font-2xl;
 		font-weight: $weight-thin;
-		padding: 2rem 0;
+		padding: 2rem;
 		height: 1rem;
 		display: flex;
 		flex-direction: row;
