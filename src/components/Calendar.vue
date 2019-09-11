@@ -170,7 +170,7 @@
 	</transition>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	$header-height: 6rem;
 	$header-width: 24rem;
 	$weekday-size: 3rem;

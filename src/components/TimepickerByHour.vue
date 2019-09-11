@@ -83,7 +83,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	$picker-height: 3rem;
 
 	$color-blue: #0075BF;

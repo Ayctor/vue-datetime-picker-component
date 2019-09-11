@@ -37,7 +37,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 	$picker-height: 3rem;
 

@@ -96,7 +96,7 @@
 	</div>
 </template>
 
-<style>
+<style scoped>
 	.timepicker-wrap
 	{
     	width: 24rem;

@@ -107,7 +107,7 @@
 	</div>
 </template>
 
-<style>
+<style scoped>
 	.calendar-wrap
 	{
 		position: relative;
