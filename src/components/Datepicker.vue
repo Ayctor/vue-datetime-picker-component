@@ -53,7 +53,7 @@
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
 				event.initEvent('input', true, true);
-				input.dispatchEvent(event)
+				document.dispatchEvent(event)
 			},
 			setTime (timeProp)
 			{
