@@ -52,7 +52,6 @@
 				this.hideCalendar();
 				var changeEvent = document.createEvent('Event');
 				changeEvent.initEvent('input', true, true);
-				(document.querySelector('input')).dispatchEvent(event);
 			},
 			setTime (timeProp)
 			{
@@ -63,7 +62,6 @@
 				this.date = timeProp;
 				var changeEvent = document.createEvent('Event');
 				changeEvent.initEvent('input', true, true);
-				(document.querySelector('input')).dispatchEvent(changeEvent);
 			},
 			showCalendar ()
 			{
