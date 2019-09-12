@@ -40,15 +40,24 @@
 				{
 					dateProp.minute(0);
 				};
-
 				if(this.name === 'date-start')
 				{
-					this.$store.state.valueStart= dateProp;
+					this.$store.state.valueStart = dateProp;
 				} else if(this.name === 'date-end')
 				{
-					this.$store.state.valueEnd= dateProp;
+					this.$store.state.valueEnd = dateProp;
 				};
-				this.date = dateProp;
+				if(this.genre === "datetime")
+				{
+					this.date = dateProp.format('DD/MM/YYYY HH:mm');
+				} else if (this.genre === "date")
+				{	
+					this.date = dateProp.format('DD/MM/YYYY');
+				} else if (this.genre === "time")
+				{
+					this.date = dateProp.format('HH:mm');
+				}
+				this.date = dateProp
 				this.hideCalendar();
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
@@ -57,11 +66,27 @@
 			},
 			setTime (timeProp)
 			{
-				if(this.genre === 'time')
+				if(this.genre === 'time' && this.statut === 'byHour')
 				{
 					timeProp.minute(0);
 				};
-				this.date = timeProp;
+				if(this.name === 'date-start')
+				{
+					this.$store.state.valueStart= timeProp;
+				} else if(this.name === 'date-end')
+				{
+					this.$store.state.valueEnd= timeProp;
+				};
+				if(this.genre === "datetime")
+				{
+					this.date = timeProp.format('DD/MM/YYYY HH:mm');
+				} else if (this.genre === "date")
+				{	
+					this.date = timeProp.format('DD/MM/YYYY');
+				} else if (this.genre === "time")
+				{
+					this.date = timeProp.format('HH:mm');
+				}
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
 				event.initEvent('input', true, true);
@@ -80,24 +105,9 @@
 		},
 		computed: 
 		{
-			date_formatted () 
-			{
-				// if(this.genre === "datetime")
-				// {
-				// 	return this.date.format('DD/MM/YYYY HH:mm');
-				// } else if (this.genre === "date")
-				// {	
-				// 	return this.date.format('DD/MM/YYYY');
-				// } else if (this.genre === "time")
-				// {
-				// 	return this.date.format('HH:mm');
-				// }
-				let formattedDate = (this.date)
-				return formattedDate
-			},
 			date_raw () 
 			{
-				return this.date
+				return this.date;
 			}
 		},
 		mounted()
@@ -108,7 +118,7 @@
 
 <template>	
 	<div class="calendar-wrap">
-		<input type="text" class="datepicker_input" v-model="date_formatted.format('LLL')" @click="showCalendar" @focus="" readonly>
+		<input type="text" class="datepicker_input" @click="showCalendar" @focus="" :value="date" readonly>
 
 		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today" :name="name"></calendar>
 		<timepicker :genre="genre" :statut="statut" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" @cancel="hideCalendar" v-if="genre === 'time'"></timepicker>
@@ -117,7 +127,6 @@
 
 <style lang="scss" scoped>
 	$header-height: 6rem;
-	$header-width: 22rem;
 	$weekday-size: 3rem;
 
 	$weight-thin: 200;

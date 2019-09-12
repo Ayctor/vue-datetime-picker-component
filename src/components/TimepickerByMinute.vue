@@ -8,8 +8,8 @@
 		props: 
 		{
 			statut: { type: String },
-			hour: { type: String },
-			minute: { type: String },
+			hour: { type: Number },
+			minute: { type: Number },
 		},
 		data()
 		{
@@ -104,7 +104,6 @@
 			hourInt ()
 			{
 				this.$emit('change', {'hourProp':this.hourProp, 'minuteProp':this.minuteProp} );
-
 			},
 			minuteInt ()
 			{

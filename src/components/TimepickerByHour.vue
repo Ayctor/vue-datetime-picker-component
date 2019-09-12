@@ -9,7 +9,7 @@
 		{
 			value: { type: String, required: true },
 			statut: { type: String },
-			hour: { type: String },
+			hour: { type: Number },
 		},
 		data()
 		{

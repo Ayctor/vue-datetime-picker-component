@@ -30,13 +30,12 @@
 		},
 		methods:
 		{
-			changeHour: function (timeObj)
+			changeHour (timeObj)
 			{
 				this.hourProp = timeObj.hourProp;
 				this.minuteProp = timeObj.minuteProp;
-
-				this.timeProp.minute(this.minuteProp);
 				this.timeProp.hour(this.hourProp);
+				this.timeProp.minute(this.minuteProp);
 			},
 			submitTime (timeProp)
 			{
@@ -71,11 +70,11 @@
 		{
 			hour_formatted ()
 			{
-				return this.timeProp.format('HH')
+				return this.timeProp.hour()
 			},
 			minute_formatted ()
 			{
-				return this.timeProp.format('mm')
+				return this.timeProp.minute()
 			},
 		},
 		mounted()
@@ -105,7 +104,7 @@
 
 	.timepicker-wrap
 	{
-    	width: $header-width;
+    	width: 100%;
 	}
 	.actions
 	{
