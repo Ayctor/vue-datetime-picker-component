@@ -50,20 +50,10 @@
 				};
 				this.date = dateProp;
 				this.hideCalendar();
-
-				let startEvent = document.createEvent('Event'); 
-				let datepickerStart = document.querySelector('.datepicker_start');
-				let datepickerStartInput = datepickerStart.querySelector('.datepicker_input');
-				startEvent.initEvent('input', true, true);
-				datepickerStartInput.dispatchEvent(startEvent)
-
-				let endEvent = document.createEvent('Event'); 
-				let datepickerEnd = document.querySelector('.datepicker_start');
-				let datepickerEndInput = datepickerEnd.querySelector('.datepicker_input');
-				endEvent.initEvent('input', true, true);
-				datepickerEndInput.dispatchEvent(endEvent)
-
-
+				let event = document.createEvent('Event'); 
+				let input = document.querySelector('.datepicker_input');
+				event.initEvent('input', true, true);
+				input.dispatchEvent(event)
 			},
 			setTime (timeProp)
 			{
@@ -72,10 +62,10 @@
 					timeProp.minute(0);
 				};
 				this.date = timeProp;
-				var changeEvent = document.createEvent('Event');
-				var input = document.querySelector('.datepicker_input');
-				changeEvent.initEvent('input', true, true);
-				input.dispatchEvent(changeEvent)
+				let event = document.createEvent('Event'); 
+				let input = document.querySelector('.datepicker_input');
+				event.initEvent('input', true, true);
+				input.dispatchEvent(event)
 			},
 			showCalendar ()
 			{
