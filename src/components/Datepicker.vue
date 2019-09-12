@@ -51,7 +51,9 @@
 				this.date = dateProp;
 				this.hideCalendar();
 				var changeEvent = document.createEvent('Event');
+				var input = document.querySelector('.datepicker_input');
 				changeEvent.initEvent('input', true, true);
+				input.dispatchEvent(changeEvent)
 			},
 			setTime (timeProp)
 			{
@@ -61,7 +63,9 @@
 				};
 				this.date = timeProp;
 				var changeEvent = document.createEvent('Event');
+				var input = document.querySelector('.datepicker_input');
 				changeEvent.initEvent('input', true, true);
+				input.dispatchEvent(changeEvent)
 			},
 			showCalendar ()
 			{
