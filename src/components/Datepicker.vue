@@ -50,10 +50,18 @@
 				};
 				this.date = dateProp;
 				this.hideCalendar();
-				var changeEvent = document.createEvent('Event');
-				var input = document.querySelector('.datepicker_input');
-				changeEvent.initEvent('input', true, true);
-				input.dispatchEvent(changeEvent)
+
+				let startEvent = document.createEvent('Event');
+			    const datepickerStart = document.querySelector('.datepicker_start');
+			    const datepickerStartInput = datepickerStart.querySelector('.datepicker_input');
+				datepickerStartInput.initEvent('input', true, true);
+				datepickerStartInput.dispatchEvent(startEvent)
+
+				let endEvent = document.createEvent('Event');
+			    const datepickerEnd = document.querySelector('.datepicker_end');
+			    const datepickerEndInput = datepickerEnd.querySelector('.datepicker_input');
+				datepickerEndInput.initEvent('input', true, true);
+				datepickerEndInput.dispatchEvent(endEvent)
 			},
 			setTime (timeProp)
 			{
