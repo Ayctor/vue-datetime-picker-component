@@ -57,7 +57,6 @@
 				{
 					this.date = dateProp.format('HH:mm');
 				}
-				this.date = dateProp
 				this.hideCalendar();
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
