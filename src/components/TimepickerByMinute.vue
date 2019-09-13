@@ -25,11 +25,6 @@
 		},
 		methods:
 		{
-			toggleHalfday()
-			{
-				this.activeMorning = !this.activeMorning;
-				this.activeAfternoon = !this.activeAfternoon;
-			},
 			addHour()
 			{
 				if(this.hourInt > 22)
@@ -117,7 +112,7 @@
 	<div class="timepicker-wrap">
 		<div class="minute-timepicker timepicker">
 			<div class="hour">	
-				<input type="text" name="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >		
+				<input type="text" class="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >		
 				<div class="timepicker-controls">
 					<button class="timepicker-controls-add" @click="addHour">
 						<img src="../assets/caret-up.svg" alt="add" >
@@ -130,7 +125,7 @@
 			</div> 
 			:
 			<div class="minute">	
-				<input type="text"  name="minute-input" v-model="minuteInt" @focus="focusedMinute" @input="sendMinute" autocomplete="off" >		
+				<input type="text" class="minute-input" v-model="minuteInt" @focus="focusedMinute" @input="sendMinute" autocomplete="off" >		
 				<div class="timepicker-controls">
 					<button class="timepicker-controls-add">
 						<img src="../assets/caret-up.svg" alt="add"  @click="addQuarter">

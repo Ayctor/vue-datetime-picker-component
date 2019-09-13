@@ -37,10 +37,19 @@
 				this.timeProp.hour(this.hourProp);
 				this.timeProp.minute(this.minuteProp);
 			},
-			submitTime (timeProp)
+			submitTime ()
 			{
-				this.hourProp = this.timeProp.hour();
-				this.minuteProp = this.timeProp.minute();
+				if(this.statut === 'byHour')
+				{
+					let hourInputValue = document.querySelector('.hour-input').value;
+					this.hourProp = hourInputValue;
+					this.minuteProp = this.timeProp.minute(0)
+				} else if ( this.statut === 'byMinute')
+				{
+					let minuteInputValue = document.querySelector('.minute-input').value;
+					this.minuteProp = minuteInputValue;
+				}
+
 				// check hours
 				if(this.statut !== 'byHalfDay')
 				{

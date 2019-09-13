@@ -7,7 +7,6 @@
 		name: 'TimepickerByHour',
 		props: 
 		{
-			value: { type: String, required: true },
 			statut: { type: String },
 			hour: { type: Number },
 		},
@@ -68,7 +67,7 @@
 	<div class="timepicker-wrap">
 		<div class="hour-timepicker timepicker" >
 			<div class="hour">		
-				<input type="text" name="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >	
+				<input type="text" class="hour-input" v-model="hourInt" @focus="focusedHour" @input="sendHour" autocomplete="off" >	
 				<div class="timepicker-controls">
 					<button class="timepicker-controls-add" @click="addHour">
 						<img src="../assets/caret-up.svg" alt="add" >

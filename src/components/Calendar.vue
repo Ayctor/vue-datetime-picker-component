@@ -97,9 +97,10 @@
 				let minuteProp = timeProp.format('mm');
 				this.dateProp.hour(hourProp);
 				this.dateProp.minute(minuteProp);
+				this.dateProp = this.dateProp.clone();
 				this.$emit('setDate', this.dateProp);
 			},
-			submit ()
+			submit()
 			{
 				this.dateProp = this.dateProp.clone();
 				this.$emit('setDate', this.dateProp);

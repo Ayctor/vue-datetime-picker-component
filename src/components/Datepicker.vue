@@ -36,17 +36,11 @@
 		{
 			setDate: function (dateProp)
 			{
-				if(this.genre === 'datetime' && this.statut === 'byHour')
-				{
-					dateProp.minute(0);
-				};
-				if(this.name === 'date-start')
-				{
-					this.$store.state.valueStart = dateProp;
-				} else if(this.name === 'date-end')
-				{
-					this.$store.state.valueEnd = dateProp;
-				};
+				// if(this.genre === 'datetime' && this.statut === 'byHour')
+				// {
+				// 	dateProp.minute(0);
+				// };
+				// 				
 				if(this.genre === "datetime")
 				{
 					this.date = dateProp.format('DD/MM/YYYY HH:mm');
@@ -57,7 +51,15 @@
 				{
 					this.date = dateProp.format('HH:mm');
 				}
+				if(this.name === 'date-start')
+				{
+					this.$store.state.valueStart = dateProp;
+				} else if(this.name === 'date-end')
+				{
+					this.$store.state.valueEnd = dateProp;
+				};
 				this.hideCalendar();
+
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
 				event.initEvent('input', true, true);
@@ -111,6 +113,16 @@
 		},
 		mounted()
 		{
+			if(this.genre === "datetime")
+			{
+				this.date = this.date.format('DD/MM/YYYY HH:mm');
+			} else if (this.genre === "date")
+			{	
+				this.date = this.date.format('DD/MM/YYYY');
+			} else if (this.genre === "time")
+			{
+				this.date = this.date.format('HH:mm');
+			}
 		}
 	};
 </script>
