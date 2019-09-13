@@ -7,7 +7,6 @@
 		name: 'TimepickerByHalfDay',
 		props: 
 		{
-			value: { type: String, required: true },
 		},
 		data()
 		{

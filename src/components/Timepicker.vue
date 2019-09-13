@@ -46,6 +46,8 @@
 					this.minuteProp = this.timeProp.minute(0)
 				} else if ( this.statut === 'byMinute')
 				{
+					let hourInputValue = document.querySelector('.hour-input').value;
+					this.hourProp = hourInputValue;
 					let minuteInputValue = document.querySelector('.minute-input').value;
 					this.minuteProp = minuteInputValue;
 				}

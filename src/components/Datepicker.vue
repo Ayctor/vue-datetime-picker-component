@@ -43,10 +43,10 @@
 				// 				
 				if(this.genre === "datetime")
 				{
-					this.date = dateProp.format('DD/MM/YYYY HH:mm');
+					this.date = dateProp.format('LLL');
 				} else if (this.genre === "date")
 				{	
-					this.date = dateProp.format('DD/MM/YYYY');
+					this.date = dateProp.format('LL');
 				} else if (this.genre === "time")
 				{
 					this.date = dateProp.format('HH:mm');
@@ -80,13 +80,19 @@
 				};
 				if(this.genre === "datetime")
 				{
-					this.date = timeProp.format('DD/MM/YYYY HH:mm');
+					this.date = timeProp.format('LLL');
 				} else if (this.genre === "date")
 				{	
-					this.date = timeProp.format('DD/MM/YYYY');
+					this.date = timeProp.format('LL');
 				} else if (this.genre === "time")
 				{
-					this.date = timeProp.format('HH:mm');
+					if(this.statut === "byHour")
+					{
+						this.date = timeProp.format('HH');
+					} else if (this.statut === "byMinute")
+					{
+						this.date = timeProp.format('HH:mm');
+					}
 				}
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
@@ -115,13 +121,19 @@
 		{
 			if(this.genre === "datetime")
 			{
-				this.date = this.date.format('DD/MM/YYYY HH:mm');
+				this.date = this.date.format('LLL');
 			} else if (this.genre === "date")
 			{	
-				this.date = this.date.format('DD/MM/YYYY');
+				this.date = this.date.format('LL');
 			} else if (this.genre === "time")
 			{
-				this.date = this.date.format('HH:mm');
+				if(this.statut === "byHour")
+				{
+					this.date = this.date.format('HH');
+				} else if (this.statut === "byMinute")
+				{
+					this.date = this.date.format('HH:mm');
+				}
 			}
 		}
 	};
