@@ -39,18 +39,21 @@
 			},
 			submitTime ()
 			{
-				if(this.statut === 'byHour')
-				{
-					let hourInputValue = document.querySelector('.hour-input').value;
-					this.hourProp = hourInputValue;
-					this.minuteProp = this.timeProp.minute(0);
-				} else if ( this.statut === 'byMinute')
-				{
-					let hourInputValue = document.querySelector('.hour-input').value;
-					this.hourProp = hourInputValue;
-					let minuteInputValue = document.querySelector('.minute-input').value;
-					this.minuteProp = minuteInputValue;
-				}
+				// if(this.statut === 'byHour')
+				// {
+				// 	let hourInputValue = document.querySelector('.hour-input').value;
+				// 	console.log(hourInputValue)
+				// 	this.hourProp = hourInputValue;
+				// 	this.minuteProp = this.timeProp.minute(0);
+				// } else if ( this.statut === 'byMinute')
+				// {
+				// 	let hourInputValue = document.querySelector('.hour-input').value;
+				// 	this.hourProp = hourInputValue;
+				// 	console.log(hourInputValue)
+				// 	let minuteInputValue = document.querySelector('.minute-input').value;
+				// 	this.minuteProp = minuteInputValue;
+				// }
+
 				if(this.statut !== 'byHalfDay')
 				{
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
