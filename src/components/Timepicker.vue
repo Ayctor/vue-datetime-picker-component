@@ -51,7 +51,6 @@
 					let minuteInputValue = document.querySelector('.minute-input').value;
 					this.minuteProp = minuteInputValue;
 				}
-
 				if(this.statut !== 'byHalfDay')
 				{
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 

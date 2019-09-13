@@ -124,7 +124,7 @@
 
 <template>	
 	<div class="calendar-wrap">
-		<input type="text" class="datepicker_input" @click="showCalendar" @focus="" :value="date" readonly>
+		<input type="text" class="datepicker_input" @click="showCalendar" @focus="" :value="date" readonly :genre="genre">
 
 		<calendar :statut="statut" v-model="date_raw" :displayedCalendar="visibleCalendar" :date.sync="date" @setDate="setDate" @cancel="hideCalendar" v-if="genre === 'datetime' || genre === 'date'" :genre="genre" :today="today" :name="name"></calendar>
 		<timepicker :genre="genre" :statut="statut" format="HH:mm" name="timepicker" :date.sync="date" @setTime="setTime" @cancel="hideCalendar" v-if="genre === 'time'"></timepicker>
