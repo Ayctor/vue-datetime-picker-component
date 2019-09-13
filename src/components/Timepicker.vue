@@ -43,7 +43,7 @@
 				{
 					let hourInputValue = document.querySelector('.hour-input').value;
 					this.hourProp = hourInputValue;
-					this.minuteProp = this.timeProp.minute(0)
+					this.minuteProp = this.timeProp.minute(0);
 				} else if ( this.statut === 'byMinute')
 				{
 					let hourInputValue = document.querySelector('.hour-input').value;
@@ -52,11 +52,11 @@
 					this.minuteProp = minuteInputValue;
 				}
 
-				// check hours
 				if(this.statut !== 'byHalfDay')
 				{
 	                if (isNaN(parseInt(this.hourProp)) || parseInt(this.hourProp) >= 24 || parseInt(this.hourProp) < 0) 
 	                {
+		                // check hours
 	                    alert('Format d\'heure invalide');
 	                    return false;
 	                }
