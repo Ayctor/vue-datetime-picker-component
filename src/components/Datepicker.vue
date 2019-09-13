@@ -36,11 +36,6 @@
 		{
 			setDate: function (dateProp)
 			{
-				// if(this.genre === 'datetime' && this.statut === 'byHour')
-				// {
-				// 	dateProp.minute(0);
-				// };
-				// 				
 				if(this.genre === "datetime")
 				{
 					this.date = dateProp.format('LLL');
@@ -86,13 +81,7 @@
 					this.date = timeProp.format('LL');
 				} else if (this.genre === "time")
 				{
-					if(this.statut === "byHour")
-					{
-						this.date = timeProp.format('HH');
-					} else if (this.statut === "byMinute")
-					{
-						this.date = timeProp.format('HH:mm');
-					}
+					this.date = timeProp.format('HH:mm');
 				}
 				let event = document.createEvent('Event'); 
 				let input = document.querySelector('.datepicker_input');
@@ -127,13 +116,7 @@
 				this.date = this.date.format('LL');
 			} else if (this.genre === "time")
 			{
-				if(this.statut === "byHour")
-				{
-					this.date = this.date.format('HH');
-				} else if (this.statut === "byMinute")
-				{
-					this.date = this.date.format('HH:mm');
-				}
+				this.date = this.date.format('HH:mm');
 			}
 		}
 	};
